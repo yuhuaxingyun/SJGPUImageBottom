@@ -1,0 +1,6 @@
+framework module Pods_SJGPUImageBottom {
+  umbrella header "Pods-SJGPUImageBottom-umbrella.h"
+
+  export *
+  module * { export * }
+}
