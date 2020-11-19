@@ -6,9 +6,10 @@
 //
 
 #import "ViewController.h"
+#import "SJHomeViewController.h"
 
 @interface ViewController ()
-
+@property (nonatomic,strong) UIButton *cameraBtn;
 @end
 
 @implementation ViewController
@@ -17,10 +18,11 @@ bool gcdFlag = NO;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    [self initCamera];
 //    [self initGCD1];
 //    [self initGCD2];
-    [self initGCD3];
+//    [self initGCD3];
+    
+    [self.view addSubview:self.cameraBtn];
     
 }
 
@@ -80,18 +82,22 @@ bool gcdFlag = NO;
     dispatch_block_testcancel(block1);
 }
 
-- (void)initCamera{
-    //1.创建预览View
-    GPUImageView *primaryView = [[GPUImageView alloc]initWithFrame:self.view.frame];
-    primaryView.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
-    //2.创建滤镜
-    GPUImageSketchFilter *filter = [[GPUImageSketchFilter alloc]init];
-    //3.创建Camera
-    GPUImageStillCamera *stillCamera = [[GPUImageStillCamera alloc]init];
-    stillCamera.outputImageOrientation = UIInterfaceOrientationPortrait;
-    //4.滤镜添加到Camera
-    [stillCamera addTarget:filter];
-    [filter addTarget:primaryView];
-    [stillCamera startCameraCapture];
+#pragma mark - Event
+- (void)cameraBtnClick{
+    SJHomeViewController *homeVC = [[SJHomeViewController alloc]init];
+    [self presentViewController:homeVC animated:YES completion:nil];
+}
+
+#pragma mark - getter
+- (UIButton *)cameraBtn{
+    if (!_cameraBtn) {
+        UIButton *cameraBtn = [UIButton buttonWithType:UIButtonTypeCustom];
+        cameraBtn.frame = CGRectMake(20, 100, kScreenWidth-40,50);
+        [cameraBtn setTitle:@"相机" forState:UIControlStateNormal];
+        [cameraBtn setTitleColor:[UIColor redColor] forState:UIControlStateNormal];
+        [cameraBtn addTarget:self action:@selector(cameraBtnClick) forControlEvents:UIControlEventTouchUpInside];
+        _cameraBtn = cameraBtn;
+    }
+    return _cameraBtn;
 }
 @end

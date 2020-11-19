@@ -15,6 +15,8 @@
 		0AC6E56125626AD1003F1CF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 0AC6E56025626AD1003F1CF7 /* Assets.xcassets */; };
 		0AC6E56425626AD1003F1CF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0AC6E56225626AD1003F1CF7 /* LaunchScreen.storyboard */; };
 		0AC6E56725626AD1003F1CF7 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AC6E56625626AD1003F1CF7 /* main.m */; };
+		0AF3D2232566580200A3B575 /* SJSmartCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3D2222566580200A3B575 /* SJSmartCamera.m */; };
+		0AF3D22A256660F500A3B575 /* SJStillCamera.m in Sources */ = {isa = PBXBuildFile; fileRef = 0AF3D229256660F500A3B575 /* SJStillCamera.m */; };
 		56C8B13C765C0BDF1E098E78 /* Pods_SJGPUImageBottom.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A46BA916AF59DF2FF5CC69CE /* Pods_SJGPUImageBottom.framework */; };
 /* End PBXBuildFile section */
 
@@ -35,6 +37,10 @@
 		0AC6E56525626AD1003F1CF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		0AC6E56625626AD1003F1CF7 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		0AC6E57225626F67003F1CF7 /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		0AF3D2212566580200A3B575 /* SJSmartCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJSmartCamera.h; sourceTree = "<group>"; };
+		0AF3D2222566580200A3B575 /* SJSmartCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJSmartCamera.m; sourceTree = "<group>"; };
+		0AF3D228256660F500A3B575 /* SJStillCamera.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SJStillCamera.h; sourceTree = "<group>"; };
+		0AF3D229256660F500A3B575 /* SJStillCamera.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SJStillCamera.m; sourceTree = "<group>"; };
 		9175EB4ECCE94468883ED5BF /* Pods-SJGPUImageBottom.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJGPUImageBottom.debug.xcconfig"; path = "Target Support Files/Pods-SJGPUImageBottom/Pods-SJGPUImageBottom.debug.xcconfig"; sourceTree = "<group>"; };
 		A46BA916AF59DF2FF5CC69CE /* Pods_SJGPUImageBottom.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_SJGPUImageBottom.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		BE9A1EE695038CEE3F8A2F85 /* Pods-SJGPUImageBottom.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-SJGPUImageBottom.release.xcconfig"; path = "Target Support Files/Pods-SJGPUImageBottom/Pods-SJGPUImageBottom.release.xcconfig"; sourceTree = "<group>"; };
@@ -88,6 +94,10 @@
 				0A13EEB72563A0AC001B3A3C /* SJBaseCameraViewController.h */,
 				0A13EEB82563A0AC001B3A3C /* SJBaseCameraViewController.m */,
 				0A13EEBB2563A14B001B3A3C /* Common.h */,
+				0AF3D2212566580200A3B575 /* SJSmartCamera.h */,
+				0AF3D2222566580200A3B575 /* SJSmartCamera.m */,
+				0AF3D228256660F500A3B575 /* SJStillCamera.h */,
+				0AF3D229256660F500A3B575 /* SJStillCamera.m */,
 			);
 			path = SJGPUImageBottom;
 			sourceTree = "<group>";
@@ -222,11 +232,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0AF3D22A256660F500A3B575 /* SJStillCamera.m in Sources */,
 				0AC6E55C25626ACF003F1CF7 /* ViewController.m in Sources */,
 				0AC6E55625626ACF003F1CF7 /* AppDelegate.m in Sources */,
 				0A13EEB92563A0AC001B3A3C /* SJBaseCameraViewController.m in Sources */,
 				0A13EEB525639FD7001B3A3C /* SJHomeViewController.m in Sources */,
 				0AC6E56725626AD1003F1CF7 /* main.m in Sources */,
+				0AF3D2232566580200A3B575 /* SJSmartCamera.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,6 +391,21 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"GPUImage\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-ObjC",
+					"-fobjc-arc",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sj.SJGPUImageBottom;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE_SPECIFIER = "";
@@ -400,6 +427,21 @@
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
+				);
+				OTHER_LDFLAGS = (
+					"$(inherited)",
+					"-framework",
+					"\"AVFoundation\"",
+					"-framework",
+					"\"CoreMedia\"",
+					"-framework",
+					"\"GPUImage\"",
+					"-framework",
+					"\"OpenGLES\"",
+					"-framework",
+					"\"QuartzCore\"",
+					"-ObjC",
+					"-fobjc-arc",
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.sj.SJGPUImageBottom;
 				PRODUCT_NAME = "$(TARGET_NAME)";

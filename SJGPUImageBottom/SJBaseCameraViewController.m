@@ -12,7 +12,9 @@
 @end
 
 @implementation SJBaseCameraViewController
-
+- (void)viewWillAppear:(BOOL)animated{
+    [super viewWillAppear:animated];
+}
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = BasebackColor;
@@ -31,6 +33,6 @@
 }
 
 - (void)initCamera{
-    
+
 }
 @end
